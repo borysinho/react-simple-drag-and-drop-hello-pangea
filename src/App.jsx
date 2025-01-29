@@ -24,11 +24,11 @@ const App = () => {
     const startIndex = result.source.index;
     const endIndex = result.destination.index;
 
-    const aux = { ...todos[startIndex] };
-    todos[startIndex] = todos[endIndex];
-    todos[endIndex] = aux;
+    const aux = [...todos];
+    const [removed] = aux.splice(startIndex, 1);
+    aux.splice(endIndex, 0, removed);
 
-    setTodos([...todos]);
+    setTodos(aux);
   };
 
   return (
